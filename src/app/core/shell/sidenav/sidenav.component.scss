@@ -1,0 +1,319 @@
+/* ===============================
+   MAIN MENU ITEMS
+=============================== */
+.main-menu-item {
+  cursor: pointer;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+
+  .mat-icon {
+    margin-right: 8px;
+    color: #555;
+  }
+
+  .toggle-icon {
+    margin-left: auto;
+    font-size: 16px;
+    color: #888;
+  }
+
+  &:hover {
+    background-color: #f3f3f3;
+  }
+
+  &.active-menu {
+    background-color: #e8f0fe;
+    color: #ff8080;
+
+    .mat-icon {
+      color: #ff8080;
+    }
+  }
+}
+.mdc-list-item {
+    padding-left: 16px;
+    padding-right: 10px;
+}
+.mdc-list-item__content {
+    margin-left: 10px !important;
+}
+
+.main-icon {
+  font-size: 24px !important; /* adjust to your liking */
+  width: 24px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+}
+
+.submenu-icon {
+  font-size: 19px !important; /* make smaller/larger as needed */
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 20px !important;
+  color: #1a73e8; /* optional: custom color */
+}
+
+
+/* ===============================
+   SUBMENU CONTAINER
+=============================== */
+.submenu-container {
+  border-left: 2px solid #e0e0e0;
+  padding-left: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &.submenu-open {
+    max-height: 1000px;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  &.submenu-toggle {
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .mat-nav-list {
+    padding: 0;
+  }
+
+  .mat-list-item {
+    font-size: 14px;
+    color: #555;
+    padding-left: 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #f9f9f9;
+      color: #000;
+      padding-left: 16px;
+    }
+
+    &.active-menu {
+      background-color: #e8f0fe;
+      color: #ff8080;
+    }
+
+    .mat-icon {
+      font-size: 18px;
+      margin-right: 8px;
+      color: #757575;
+    }
+  }
+}
+
+/* ===============================
+   SIDENAV STRUCTURE
+=============================== */
+.sidebar-full,
+.sidebar-compact {
+  .navigation-panel {
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  /* App Brand / Logo */
+  .app-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 15rem;
+    z-index: 9999;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+
+    .app-logo {
+      height: 42px;
+      margin-bottom: 8px;
+    }
+
+    .app-logo-text {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #555;
+    }
+  }
+
+  /* User Info */
+  .app-user {
+    text-align: center;
+    width: 100%;
+    padding: 1rem 0 0.4rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1rem;
+
+    .app-user-photo {
+      width: 72px;
+      margin: 0 auto 8px;
+      height: 72px;
+      border: 1px solid hsla(210deg, 8%, 51%, 13%);
+      padding: 4px;
+      border-radius: 50%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .app-user-name {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .app-user-controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+
+      button {
+        margin: 0 4px;
+        color: #555;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+          color: #ff8080;
+        }
+      }
+    }
+  }
+
+  /* Section Separator */
+  .nav-item-sep {
+    margin: 1rem 0;
+    text-transform: uppercase;
+
+    mat-divider {
+      margin-bottom: 0.25rem;
+    }
+
+    span {
+      padding: 0 0 0 16px;
+      display: block;
+      font-size: 12px;
+      color: #888;
+    }
+  }
+
+  /* App sidenav area */
+  .app-sidenav {
+    .mat-nav-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mat-list-item {
+      .mat-list-icon {
+        height: 30px;
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+/* ===============================
+   SIDENAV VARIANTS
+=============================== */
+.sidebar-compact {
+  .app-brand {
+    .app-logo-text {
+      display: none;
+    }
+  }
+
+  .app-user {
+    display: none;
+  }
+
+  .submenu-container {
+    margin-left: .5rem;
+  }
+
+  .main-menu-item {
+    justify-content: center;
+
+    .mat-icon {
+      margin: 0;
+    }
+
+    a {
+      display: none;
+    }
+  }
+}
+
+.sidebar-full {
+  .navigation-panel {
+    padding-top: 5%;
+  }
+
+  .app-sidenav {
+    .icon-menu {
+      flex-direction: row;
+    }
+  }
+}
+
+/* ===============================
+   ACTIVE STATE & HOVER EFFECTS
+=============================== */
+.active-menu {
+  background-color: #e0e0e0 !important;
+  color: #ff8080 !important;
+
+  .mat-icon {
+    color: #ff8080 !important;
+  }
+}
+
+/* ===============================
+   ANIMATIONS
+=============================== */
+.submenu-container {
+  transition: all 0.25s ease-in-out;
+}
+
+.mat-list-item,
+.main-menu-item {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.main-menu-item:hover {
+  background-color: #f4f6f9;
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 768px) {
+  .sidebar-full {
+    .navigation-panel {
+      padding-top: 15%;
+    }
+
+    .submenu-container {
+      margin-left: 1rem;
+      border-left: 1px solid #eee;
+    }
+  }
+}

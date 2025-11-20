@@ -1,0 +1,67 @@
+mifosx-server-selector {
+  padding-left: 5px;
+  width: 40%;
+}
+.center-server{
+    text-align: center !important;
+    width: 14rem;
+    margin-top: 50px;
+}
+.mat-mdc-form-field-infix {
+  width: 200px !important;
+}
+
+.login-container {
+  box-shadow: 1px 1px 50px #000;
+  height: 100vh;
+  width: 100%;
+  min-width: 21.5rem;
+  padding: 0.5rem 1rem;
+
+  .img-container {
+  margin-top:20%;
+    max-width: 18rem;
+    margin-bottom: 2rem;
+    gap: 20px;
+  }
+}
+
+.layout-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-horizontal-list {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  mat-list-item {
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+
+    [mat-button] {
+      white-space: nowrap;
+    }
+  }
+}
+
+.p-t-10 {
+  padding-top: 10px;
+  width:100%;
+}
+
+
+::ng-deep .login-container mifosx-footer .divider {
+  margin: 0 !important;
+  width: 14rem !important;
+  margin-top: 2px !important;
+}
+
+::ng-deep .login-container #footer {
+  align-items: unset !important;
+}

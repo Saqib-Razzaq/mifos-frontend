@@ -1,0 +1,31 @@
+<!-- The viewport is divided into two parts having max-width 70% and 30% -->
+<div class="layout-row">
+
+  <div class="layout-column login-container">
+    <!-- Language Selector to the extreme right -->
+    <div class="layout-row-reverse">
+      <mifosx-language-selector class="p-t-10 p-r-10 width-40"></mifosx-language-selector>
+      <mifosx-theme-toggle class="p-t-10"></mifosx-theme-toggle>
+      <mifosx-server-selector class="p-t-10" *ngIf="allowServerSwitch()"></mifosx-server-selector>
+    </div>
+
+    <!-- Logo with Organization Name -->
+    <div class="layout-row align-center-center flex-auto">
+      <img src="assets/images/mifos_lg-logo.png" alt="{{ 'APP_NAME' | translate }} Logo" class="img-container" />
+    </div>
+
+    <!-- Form Section -->
+    <div class="layout-column align-center-center">
+      
+      <mifosx-login-form *ngIf="!resetPassword && !twoFactorAuthenticationRequired"></mifosx-login-form>
+      
+
+      <div class="layout-row">
+        <mifosx-reset-password *ngIf="resetPassword"></mifosx-reset-password>
+        <mifosx-two-factor-authentication *ngIf="twoFactorAuthenticationRequired"></mifosx-two-factor-authentication>
+      </div>
+    </div>
+
+  </div>
+</div>
+

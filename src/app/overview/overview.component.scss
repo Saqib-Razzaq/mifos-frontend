@@ -1,0 +1,40 @@
+.loading-container, .error-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.label {
+  margin-top: 8px;
+  color: #555;
+  font-size: 0.9rem;
+}
+// overview.component.scss
+.office-selector {
+  margin: 20px 0;
+  padding: 0 16px;
+}
+
+mat-form-field {
+  width: 250px;
+}

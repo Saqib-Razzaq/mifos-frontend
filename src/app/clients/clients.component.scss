@@ -1,0 +1,6 @@
+@use '../shared/styles/list-layout' as *;
+.no-records {
+    text-align: center;
+    padding: 16%;
+    font-size: 20px;
+}

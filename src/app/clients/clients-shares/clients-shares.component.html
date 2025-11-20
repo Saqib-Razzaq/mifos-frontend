@@ -1,0 +1,95 @@
+<mat-card class="container">
+  <!-- 🔹 Search Box -->
+  <div class="layout-column layout-gt-sm-row align-gt-sm-start-center">
+    <div class="search-box m-r-30">
+      <mat-form-field class="search-box">
+        <input
+          matInput
+          placeholder="Search by account no, client name, or product"
+          class="search-box"
+          (keydown.enter)="search($event.target.value)"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="client-list">
+    <div *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="bordered-table"
+    >
+      <!-- Account No -->
+      <ng-container matColumnDef="accountNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Account No</th>
+        <td mat-cell *matCellDef="let s">
+          <a
+            class="account-link"
+            (click)="navigateToShareAccount($event, s)"
+          >
+            {{ s.accountNo }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Share Product -->
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Share Product</th>
+        <td mat-cell *matCellDef="let s">
+          {{ s.shareProductName || s.productName }}
+        </td>
+      </ng-container>
+
+      <!-- Client Name -->
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+        <td mat-cell *matCellDef="let s">
+          <a
+            class="client-link"
+            (click)="navigateToClient($event, s)"
+          >
+            {{ s.clientName || '—' }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Approved Shares -->
+      <ng-container matColumnDef="approvedShares">
+        <th mat-header-cell *matHeaderCellDef>Approved Shares</th>
+        <td mat-cell *matCellDef="let s">
+          {{ s.summary?.totalApprovedShares || 0 }}
+        </td>
+      </ng-container>
+
+      <!-- Pending For Approval Shares -->
+      <ng-container matColumnDef="pendingShares">
+        <th mat-header-cell *matHeaderCellDef>Pending For Approval Shares</th>
+        <td mat-cell *matCellDef="let s">
+          {{ s.summary?.totalPendingForApprovalShares || 0 }}
+        </td>
+      </ng-container>
+
+      <!-- Header & Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="select-row"></tr>
+    </table>
+
+    <!-- 🔹 Paginator -->
+    <mat-paginator
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 50, 100]"
+      [length]="totalRows"
+      showFirstLastButtons
+    ></mat-paginator>
+
+    <!-- 🔹 No Records -->
+    <div *ngIf="!isLoading && dataSource.data.length === 0" class="no-records">
+      No share records found
+    </div>
+  </div>
+</mat-card>

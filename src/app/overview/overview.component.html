@@ -1,0 +1,83 @@
+<div class="container">
+
+  <!-- Office Selector -->
+  <div class="office-selector" *ngIf="offices.length > 1">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'labels.inputs.Office' | translate }}</mat-label>
+      <mat-select [value]="selectedOfficeId" (selectionChange)="onOfficeChange($event.value)">
+        <mat-option *ngFor="let office of offices" [value]="office.id">
+          {{ office.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Loading / Error -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading dashboard data...</p>
+  </div>
+  <div *ngIf="error && !loading" class="error-container">
+    <p>Failed to load data.</p>
+    <button mat-raised-button color="primary" (click)="refresh()">Retry</button>
+  </div>
+
+  <!-- MAIN GRID — EXACT CLIENT REQUIREMENT ORDER -->
+  <div *ngIf="!loading && !error" class="grid-container">
+
+    <!-- 1. Customers Per Branch -->
+    <div class="card highlight">
+      <div class="value">{{ metrics.customers.all | number }}</div>
+      <div class="label">All Customers</div>
+    </div>
+    <div class="card dim">
+      <div class="value">{{ metrics.customers.active | number }}</div>
+      <div class="label">Active Customers</div>
+    </div>
+    <div class="card dim">
+      <div class="value">{{ metrics.customers.inactive | number }}</div>
+      <div class="label">Inactive Customers</div>
+    </div>
+    <div class="card dim">
+      <div class="value">{{ metrics.customers.new | number }}</div>
+      <div class="label">New Customers</div>
+    </div>
+
+    <!-- 2. Loan Metrics -->
+    <div class="card highlight">
+      <div class="value">{{ metrics.loans.principalOutstanding | number }}</div>
+      <div class="label">Principal Outstanding (Loans)</div>
+    </div>
+    <div class="card dim">
+      <div class="value">{{ metrics.loans.interestOutstanding | currency:'USD':'symbol':'1.0-0' }}</div>
+      <div class="label">Interest Outstanding</div>
+    </div>
+    <div class="card dim">
+      <div class="value">{{ metrics.loans.chargesOutstanding | currency:'USD':'symbol':'1.0-0' }}</div>
+      <div class="label">Charges Outstanding</div>
+    </div>
+    <div class="card highlight">
+      <div class="value">{{ metrics.loans.totalOutstanding | number }}</div>
+      <div class="label">Total Outstanding (Loans)</div>
+    </div>
+
+    <!-- 3. Loan Overdue -->
+    <div class="card dim"><div class="value">{{ metrics.loanOverdue.principal | currency }}</div><div class="label">Principal Overdue</div></div>
+    <div class="card dim"><div class="value">{{ metrics.loanOverdue.interest | currency }}</div><div class="label">Interest Overdue</div></div>
+    <div class="card dim"><div class="value">{{ metrics.loanOverdue.charges | currency }}</div><div class="label">Charges Overdue</div></div>
+    <div class="card dim"><div class="value">{{ metrics.loanOverdue.total | currency }}</div><div class="label">Total Overdue</div></div>
+
+    <!-- 4–8. Single Metrics -->
+    <div class="card dim"><div class="value">{{ metrics.overpaidLoans | number }}</div><div class="label">Overpaid Loans</div></div>
+    <div class="card dim"><div class="value">{{ metrics.expectedPayments | currency }}</div><div class="label">Expected Payments</div></div>
+    <div class="card dim"><div class="value">{{ metrics.pendingApproval | number }}</div><div class="label">Pending Approval</div></div>
+    <div class="card dim"><div class="value">{{ metrics.pendingDisbursal | number }}</div><div class="label">Pending Disbursal</div></div>
+    <div class="card dim"><div class="value">{{ metrics.disbursedToday | currency }}</div><div class="label">Disbursed Today</div></div>
+
+    <!-- 9–11. Savings -->
+    <div class="card dim"><div class="value">{{ metrics.savings.total | currency }}</div><div class="label">Total Savings</div></div>
+    <div class="card dim"><div class="value">{{ metrics.savings.fixedDeposits | currency }}</div><div class="label">Fixed Deposits</div></div>
+    <div class="card dim"><div class="value">{{ metrics.savings.recurrentDeposits | currency }}</div><div class="label">Recurring Deposits</div></div>
+
+  </div>
+</div>

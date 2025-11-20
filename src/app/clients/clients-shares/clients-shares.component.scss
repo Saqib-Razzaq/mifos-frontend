@@ -1,0 +1,20 @@
+@use '../../shared/styles/list-layout' as *;
+
+.no-records {
+    text-align: center;
+    padding: 16%;
+    font-size: 20px;
+}
+.account-link,
+.client-link {
+  text-transform: uppercase;
+  text-decoration: none !important;
+  font-weight: 400;
+  cursor: pointer !important;
+  transition: color 0.2s ease-in-out;
+}
+
+.account-link:hover,
+.client-link:hover {
+  font-weight: 500 !important;
+}
